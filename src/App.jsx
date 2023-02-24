@@ -1,22 +1,24 @@
 import Header from "./components/Header/Header";
-import bannerLogo from "./assets/images/banniere.png";
+import bannerLogo from "/images/banniere.png";
+import ProductsList from "./components/ProductsList/ProductList";
 
 function App() {
   return (
-    <div>
+    <div className="homepage">
       <Header />
-      {/* <div style={{ background: `url(${bannerLogo}) center/cover` }}></div> */}
-
-      <img
-        src={bannerLogo}
-        alt="banniere"
-        style={{
-          height: "550px",
-          width: "100%",
-          marginTop: "10px",
-          objectFit: "cover",
-        }}
-      />
+      <main>
+        <img
+          src={bannerLogo}
+          alt="banniere"
+          style={{
+            height: "550px",
+            width: "100%",
+            marginTop: "10px",
+            objectFit: "cover",
+          }}
+        />
+        <ProductsList />
+      </main>
     </div>
   );
 }
