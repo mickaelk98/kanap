@@ -1,6 +1,7 @@
 import Header from "./components/Header/Header";
 import bannerLogo from "/images/banniere.png";
 import ProductsList from "./components/ProductsList/ProductList";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         />
         <ProductsList />
       </main>
+      <Footer />
     </div>
   );
 }
