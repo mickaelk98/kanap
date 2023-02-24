@@ -3,7 +3,7 @@ import { ProductsContext } from "../../context/ProductsContext";
 import ProductItem from "../ProductItem/ProductItem";
 
 function ProductsList() {
-  const products = useContext(ProductsContext);
+  const { products } = useContext(ProductsContext);
   return (
     <div className="products-list">
       <div className="container">
