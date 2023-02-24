@@ -1,3 +1,4 @@
+import { NavLink } from "react-router-dom";
 import logo from "/images/logo.png";
 
 function Header() {
@@ -29,10 +30,14 @@ function Header() {
       </div>
       <div className="header__logo">
         <div className="container">
-          <img src={logo} alt="entrprise" />
+          <NavLink to="/">
+            <img src={logo} alt="entrprise" />
+          </NavLink>
           <nav>
             <ul>
-              <li>Accueil</li>
+              <NavLink to="/">
+                <li>Accueil</li>
+              </NavLink>
               <li>Pannier</li>
             </ul>
           </nav>
