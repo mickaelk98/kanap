@@ -10,6 +10,14 @@ h2 {
   font-size: 30px;
 }
 
+a {
+  color: #333;
+}
+
+.active {
+  color: var(--primary-color);
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
