@@ -1,7 +1,6 @@
 import logo from "../../assets/images/logo.png";
 
 function Header() {
-  console.log(window.innerWidth);
   return (
     <header className="header">
       <div className="header__info">
