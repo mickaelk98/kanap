@@ -1,7 +1,9 @@
+import { useContext } from "react";
+import { ProductsContext } from "../../context/ProductsContext";
 import ProductItem from "../ProductItem/ProductItem";
-import { products } from "@/data/products";
 
 function ProductsList() {
+  const products = useContext(ProductsContext);
   return (
     <div className="products-list">
       <div className="container">
