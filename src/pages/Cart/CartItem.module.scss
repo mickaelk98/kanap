@@ -1,0 +1,64 @@
+@use '../../assets/styles/media';
+
+.item {
+  position: relative;
+  padding: 15px 0;
+  width: 90%;
+  margin: 0 auto;
+  text-align: left;
+  @include media.sm-lt {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 80%;
+    max-width: 1200px;
+  }
+  &::before {
+    content: "";
+      position: absolute;
+      top: 0px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: #fff;
+      color: #fff;
+  }
+  &::after {
+    content: "";
+      position: absolute;
+      bottom: 0px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: #fff;
+      color: #fff;
+  }
+  .imageblock {
+    width: 60%;
+    max-width: 300px;
+    margin: 0 auto;
+    @include media.sm-lt {
+      margin: 0;
+    }
+
+    img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 30px;
+    }
+  }
+  .itemtitle {
+    margin-bottom: 30px;
+  }
+  .itemcolor, .itemprice, .itemquantity {
+    margin-bottom: 20px;
+  }
+  button {
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: var(--secondary-color);
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
