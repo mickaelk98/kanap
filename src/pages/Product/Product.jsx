@@ -27,8 +27,9 @@ function Product() {
     const article = {
       _id: id,
       color: productColor.current,
-      quantity: productQuantity.current,
+      quantity: Math.floor(productQuantity.current),
     };
+    let articleAlreadyInCart = false;
 
     // crée un pannier et ajoute le nouveaux produit
     if (!cart) {
@@ -37,22 +38,17 @@ function Product() {
       // cumule les quantités si le produit est deja dans le panier
       for (let i = 0; i < cart.length; i++) {
         if (cart[i]._id === article._id && cart[i].color === article.color) {
+          articleAlreadyInCart = true;
           cart[i].quantity += article.quantity;
-          // Math.floor(cart[i].quantity) += Math.floor(article.quantity)
           localStorage.setItem("cart", JSON.stringify(cart));
           cart = JSON.parse(localStorage.getItem("cart"));
         }
       }
       // ajout le produit dans le pannier si il n'y est pas
-      for (let i = 0; i < cart.length; i++) {
-        if (
-          (cart[i]._id === article._id && cart[i].color !== article.color) ||
-          cart[i]._id !== article._id
-        ) {
-          cart.push(article);
-          localStorage.setItem("cart", JSON.stringify(cart));
-          cart = JSON.parse(localStorage.getItem("cart"));
-        }
+      if (!articleAlreadyInCart) {
+        cart.push(article);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        cart = JSON.parse(localStorage.getItem("cart"));
       }
     }
   }
