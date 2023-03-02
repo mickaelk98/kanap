@@ -1,5 +1,5 @@
-import { useContext, useRef } from "react";
-import { json, useParams } from "react-router-dom";
+import { useContext, useRef, useState } from "react";
+import { useParams } from "react-router-dom";
 import { ProductsContext } from "@/context/ProductsContext";
 import styles from "./Product.module.scss";
 
@@ -10,7 +10,7 @@ function Product() {
   const product = getOneProduct(id);
   const { imageUrl, altTxt, name, description, price, colors } = product;
   const productColor = useRef("");
-  const productQuantity = useRef(1);
+  const [productQuantity, setProductQuantity] = useState(1);
 
   // get product color
   function handleChangeColor(e) {
@@ -19,7 +19,7 @@ function Product() {
 
   // get product quantity
   function handleChangeQuantity(e) {
-    productQuantity.current = e.target.value;
+    setProductQuantity(e.target.value);
   }
 
   function addToCart() {
@@ -27,7 +27,7 @@ function Product() {
     const article = {
       _id: id,
       color: productColor.current,
-      quantity: Math.floor(productQuantity.current),
+      quantity: Math.floor(productQuantity),
     };
     let articleAlreadyInCart = false;
 
@@ -74,6 +74,7 @@ function Product() {
             name="color-selector"
             id="colors"
           >
+            <option value="">Choissisez une couleur</option>
             {colors.map((color) => (
               <option key={color} value={color}>
                 {color}
@@ -86,6 +87,7 @@ function Product() {
           <input
             type="number"
             min="1"
+            value={productQuantity}
             onChange={handleChangeQuantity}
             max="100"
           />
