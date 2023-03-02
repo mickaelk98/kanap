@@ -1,5 +1,5 @@
-import { useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useRef } from "react";
+import { json, useParams } from "react-router-dom";
 import { ProductsContext } from "@/context/ProductsContext";
 import styles from "./Product.module.scss";
 
@@ -9,6 +9,53 @@ function Product() {
   const id = params.id;
   const product = getOneProduct(id);
   const { imageUrl, altTxt, name, description, price, colors } = product;
+  const productColor = useRef("");
+  const productQuantity = useRef(1);
+
+  // get product color
+  function handleChangeColor(e) {
+    productColor.current = e.target.value;
+  }
+
+  // get product quantity
+  function handleChangeQuantity(e) {
+    productQuantity.current = e.target.value;
+  }
+
+  function addToCart() {
+    let cart = JSON.parse(localStorage.getItem("cart"));
+    const article = {
+      _id: id,
+      color: productColor.current,
+      quantity: productQuantity.current,
+    };
+
+    // crée un pannier et ajoute le nouveaux produit
+    if (!cart) {
+      localStorage.setItem("cart", JSON.stringify([article]));
+    } else {
+      // cumule les quantités si le produit est deja dans le panier
+      for (let i = 0; i < cart.length; i++) {
+        if (cart[i]._id === article._id && cart[i].color === article.color) {
+          cart[i].quantity += article.quantity;
+          // Math.floor(cart[i].quantity) += Math.floor(article.quantity)
+          localStorage.setItem("cart", JSON.stringify(cart));
+          cart = JSON.parse(localStorage.getItem("cart"));
+        }
+      }
+      // ajout le produit dans le pannier si il n'y est pas
+      for (let i = 0; i < cart.length; i++) {
+        if (
+          (cart[i]._id === article._id && cart[i].color !== article.color) ||
+          cart[i]._id !== article._id
+        ) {
+          cart.push(article);
+          localStorage.setItem("cart", JSON.stringify(cart));
+          cart = JSON.parse(localStorage.getItem("cart"));
+        }
+      }
+    }
+  }
 
   return (
     <main className={styles.product}>
@@ -26,7 +73,11 @@ function Product() {
         </div>
         <div className={styles.selectcolorblock}>
           <label htmlFor="color-selector">Choissisez une couleur</label>
-          <select name="color-selector" id="colors">
+          <select
+            onChange={handleChangeColor}
+            name="color-selector"
+            id="colors"
+          >
             {colors.map((color) => (
               <option key={color} value={color}>
                 {color}
@@ -36,10 +87,15 @@ function Product() {
         </div>
         <div className={styles.selectquantityblock}>
           <label htmlFor="itemQuantity">Nombre d'article(s) (1-100) :</label>
-          <input type="number" min="1" max="100" />
+          <input
+            type="number"
+            min="1"
+            onChange={handleChangeQuantity}
+            max="100"
+          />
         </div>
         <div className={styles.btnblock}>
-          <button>Ajouter au panier</button>
+          <button onClick={addToCart}>Ajouter au panier</button>
         </div>
       </article>
     </main>
