@@ -1,6 +1,10 @@
 import styles from "./CartItem.module.scss";
 
-function CartItem({ article }) {
+function CartItem({ article, deleteArticle }) {
+  function handleClick() {
+    deleteArticle(article);
+  }
+
   return (
     <li className={styles.item}>
       <div className={styles.imageblock}>
@@ -11,7 +15,7 @@ function CartItem({ article }) {
         <p className={styles.itemcolor}>{article.color}</p>
         <p className={styles.itemprice}> {article.price} €</p>
         <p className={styles.itemquantity}>Quantité: {article.quantity} </p>
-        <button>Supprimer</button>
+        <button onClick={handleClick}>Supprimer</button>
       </div>
     </li>
   );
