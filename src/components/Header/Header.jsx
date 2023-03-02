@@ -38,7 +38,9 @@ function Header() {
               <NavLink end to="/">
                 <li>Accueil</li>
               </NavLink>
-              <li>Pannier</li>
+              <NavLink end to="/cart">
+                <li>Pannier</li>
+              </NavLink>
             </ul>
           </nav>
         </div>
