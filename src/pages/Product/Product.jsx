@@ -28,7 +28,10 @@ function Product() {
       _id: id,
       color: productColor.current,
       quantity: Math.floor(productQuantity),
+      name,
+      price,
       imageUrl,
+      altTxt,
     };
     let articleAlreadyInCart = false;
 
