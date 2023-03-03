@@ -50,7 +50,7 @@ function Cart() {
         </p>
       )}
       <div>
-        <button className={styles.btn}>Commander</button>
+        {cart.length > 0 && <button className={styles.btn}>Commander</button>}
       </div>
     </main>
   );
