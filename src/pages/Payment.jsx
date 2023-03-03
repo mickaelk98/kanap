@@ -1,12 +1,11 @@
 import CreditCard from "../components/CreditCard";
-import OrderForm from "../components/OrderForm";
+import OrderForm from "../components/OrderForm/OrderForm";
 
 function Payement() {
-  const compoenentList = [<CreditCard />, <OrderForm />];
+  const compoenentList = [<OrderForm />, <CreditCard />];
   return (
     <div>
-      <p>page de payement</p>
-      <div>{compoenentList[1]}</div>
+      <div>{compoenentList[0]}</div>
     </div>
   );
 }

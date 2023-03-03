@@ -1,8 +1,10 @@
 import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 import styles from "./Cart.module.scss";
 import CartItem from "./CartItem";
 
 function Cart() {
+  const navigate = useNavigate();
   const localCart = JSON.parse(localStorage.getItem("cart"));
   const [cart, setCart] = useState(localCart);
   let totalPrice;
@@ -45,13 +47,17 @@ function Cart() {
         )}
       </ul>
       {cart.length > 0 && (
-        <p className={styles.total}>
-          Total ({totalArticle} articles): {totalPrice}€
-        </p>
+        <>
+          <p className={styles.total}>
+            Total ({totalArticle} articles): {totalPrice}€
+          </p>
+          <div>
+            <button onClick={() => navigate("/payment")} className={styles.btn}>
+              Commander
+            </button>
+          </div>
+        </>
       )}
-      <div>
-        {cart.length > 0 && <button className={styles.btn}>Commander</button>}
-      </div>
     </main>
   );
 }
