@@ -53,8 +53,8 @@ function CreditCard({ step, setStep }) {
 
   return (
     <div className={styles.creditcardpage}>
-      <h2>carte de paiement</h2>
       <form className={styles.form} onSubmit={handleSubmit(getCardInformation)}>
+        <h2>carte de paiement</h2>
         <div className={styles.name}>
           <label htmlFor="name">Nom</label>
           <input
