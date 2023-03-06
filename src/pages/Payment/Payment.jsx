@@ -3,6 +3,7 @@ import Confirmation from "../../components/Confirmation/Confirmation";
 import CreditCard from "../../components/CreditCard/CreditCard";
 import OrderForm from "../../components/OrderForm/OrderForm";
 import OrderProvider from "../../components/OrderProvider";
+import StepsIndex from "../../components/StepsIndex/StepsIndex";
 import styles from "./Payment.module.scss";
 
 function Payement() {
@@ -17,41 +18,7 @@ function Payement() {
     <OrderProvider>
       <div className={styles.payment}>
         <div className={styles.container}>
-          <ul className={styles.stepsindex}>
-            <li>
-              <div
-                style={
-                  step === 0
-                    ? { background: "var(--secondary-color)" }
-                    : { background: "var(--primary-color)" }
-                }
-              >
-                1
-              </div>
-            </li>
-            <li>
-              <div
-                style={
-                  step === 1
-                    ? { background: "var(--secondary-color)" }
-                    : { background: "var(--primary-color)" }
-                }
-              >
-                2
-              </div>
-            </li>
-            <li>
-              <div
-                style={
-                  step === 2
-                    ? { background: "var(--secondary-color)" }
-                    : { background: "var(--primary-color)" }
-                }
-              >
-                3
-              </div>
-            </li>
-          </ul>
+          <StepsIndex step={step} />
           <div className={styles.steps}>{compoenentList[step]}</div>
         </div>
       </div>
