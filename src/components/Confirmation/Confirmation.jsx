@@ -6,8 +6,12 @@ function Confirmation() {
   const { orderInformation, creditCardInformation } = useContext(OrderContext);
   const cart = JSON.parse(localStorage.getItem("cart"));
 
-  // const { name, location } = orderInformation;
-  // const { cardHolderName, cardNumber, cardDate } = creditCardInformation;
+  const { name, location } = orderInformation;
+  const {
+    cardHolderName,
+    cardNumber,
+    cardDate: { month, year },
+  } = creditCardInformation;
 
   const totalPrice = cart.reduce(
     (acc, value) => (acc += value.price * value.quantity),
@@ -22,18 +26,24 @@ function Confirmation() {
       <div className={styles.container}>
         <div className={styles.delivery}>
           <h3>Adresse de livraison</h3>
-          <ul>
-            <li>Nom: john doe</li>
-            <li>Adresse: 25 rue des test 75000 paris</li>
-          </ul>
+          {orderInformation && (
+            <ul>
+              <li>Nom: {name}</li>
+              <li>Adresse: {location}</li>
+            </ul>
+          )}
         </div>
         <div className={styles.creditcard}>
           <h3>Carte de paiement</h3>
-          <ul>
-            <li>Nom: john doe</li>
-            <li>Number: 1222251116848499464949</li>
-            <li>Expiration: 12/24</li>
-          </ul>
+          {creditCardInformation && (
+            <ul>
+              <li>Nom: {cardHolderName}</li>
+              <li>Number: {cardNumber}</li>
+              <li>
+                Expiration: {month}/{year}
+              </li>
+            </ul>
+          )}
         </div>
         <div className={styles.summary}>
           <h3>Recapitulatif</h3>
