@@ -1,6 +1,10 @@
+import { useContext } from "react";
+import { OrderContext } from "../../context/OrderContext";
 import styles from "./Confirmation.module.scss";
 
 function Confirmation() {
+  const { orderInformation } = useContext(OrderContext);
+
   return (
     <div className={styles.confirmationpage}>
       <h2>Confirmation</h2>

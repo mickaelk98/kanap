@@ -2,8 +2,12 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./OrderForm.module.scss";
+import { useContext } from "react";
+import { OrderContext } from "../../context/OrderContext";
 
 function OrderForm() {
+  const { addOrderInformation } = useContext(OrderContext);
+
   const schema = yup.object({
     name: yup
       .string()
@@ -26,6 +30,7 @@ function OrderForm() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       name: "",
@@ -37,7 +42,8 @@ function OrderForm() {
   });
 
   function getOrderInformation(formValue) {
-    console.log(formValue);
+    addOrderInformation(formValue);
+    reset();
   }
 
   return (
