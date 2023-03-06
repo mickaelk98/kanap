@@ -1,0 +1,22 @@
+.confirmation {
+  background: var(--primary-color);
+  color: #fff;
+  margin: -3px auto 0;
+  padding: 50px 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  div {
+    background: #fff;
+    color: var(--secondary-color);
+    padding: 10px 5px;
+    border-radius: 10px;
+    max-width: 400px;
+  }
+}
