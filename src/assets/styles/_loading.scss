@@ -119,8 +119,6 @@ body{ background: var(--primary-color); }
 .square:nth-child(6){
   @include delay(5 * $delayenter);
 }
-.square:nth-child(7){
-}
 .square:nth-child(8){
   @include delay(1 * $delayenter);
 }
