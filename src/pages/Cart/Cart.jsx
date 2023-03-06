@@ -34,7 +34,7 @@ function Cart() {
     <main className={styles.cart}>
       <h1 className={styles.title}>Votre pannier</h1>
       <ul className={styles.cartlist}>
-        {cart.length > 0 ? (
+        {cart !== null ? (
           cart.map((article) => (
             <CartItem
               key={article._id}
@@ -46,7 +46,7 @@ function Cart() {
           <p className={styles.text}>Votre pannier est vide</p>
         )}
       </ul>
-      {cart.length > 0 && (
+      {cart && (
         <>
           <p className={styles.total}>
             Total ({totalArticle} articles): {totalPrice}€
