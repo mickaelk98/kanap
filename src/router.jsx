@@ -5,6 +5,7 @@ import Homepage from "./pages/Homepage";
 import Payement from "./pages/Payment/Payment";
 import Product from "./pages/Product/Product";
 import Confirmation from "./pages/Confirmation/Confirmation";
+import HasOrdered from "./components/HasOrdered";
 
 export const router = createBrowserRouter([
   {
@@ -29,7 +30,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/confirmation",
-        element: <Confirmation />,
+        element: (
+          <HasOrdered>
+            <Confirmation />
+          </HasOrdered>
+        ),
       },
     ],
   },
