@@ -1,11 +1,11 @@
 import * as yup from "yup";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./OrderForm.module.scss";
 import { useContext } from "react";
 import { OrderContext } from "../../context/OrderContext";
 
-function OrderForm() {
+function OrderForm({ step, setStep }) {
   const { addOrderInformation } = useContext(OrderContext);
 
   const schema = yup.object({
@@ -44,6 +44,7 @@ function OrderForm() {
   function getOrderInformation(formValue) {
     addOrderInformation(formValue);
     reset();
+    setStep(step + 1);
   }
 
   return (
@@ -85,7 +86,7 @@ function OrderForm() {
           {errors?.location && <small>{errors.location.message}</small>}
         </div>
         <div className={styles.btnblock}>
-          <button>Envoyer</button>
+          <button>Suivant</button>
         </div>
       </form>
     </div>

@@ -6,7 +6,7 @@ import styles from "./CreditCard.module.scss";
 import { useContext } from "react";
 import { OrderContext } from "../../context/OrderContext";
 
-function CreditCard() {
+function CreditCard({ step, setStep }) {
   const { addCreditCardInformation } = useContext(OrderContext);
 
   const schema = yup.object({
@@ -48,6 +48,7 @@ function CreditCard() {
   function getCardInformation(formValue) {
     addCreditCardInformation(formValue);
     reset();
+    setStep(step + 1);
   }
 
   return (
@@ -104,7 +105,7 @@ function CreditCard() {
           </div>
         </div>
         <div className={styles.btnblock}>
-          <button>Envoyer</button>
+          <button>Suivant</button>
         </div>
       </form>
     </div>
