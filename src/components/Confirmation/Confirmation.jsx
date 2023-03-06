@@ -22,7 +22,6 @@ function Confirmation() {
 
   return (
     <div className={styles.confirmationpage}>
-      <h2>Confirmation</h2>
       <div className={styles.container}>
         <div className={styles.delivery}>
           <h3>Adresse de livraison</h3>

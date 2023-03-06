@@ -1,3 +1,5 @@
+@use '../../assets/styles/media';
+
 .confirmationpage {
   background: var(--primary-color);
   color: #fff;
@@ -18,8 +20,11 @@
   }
   .container {
     width: 90%;
-    max-width: 500px;
+    max-width: 800px;
     margin: 0 auto;
+    @include media.lg-lt {
+      margin-right: 0;
+    }
   }
   .delivery, .creditcard, .summary{
     margin-bottom: 30px;
