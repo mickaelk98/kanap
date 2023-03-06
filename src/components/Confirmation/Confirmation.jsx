@@ -1,8 +1,10 @@
 import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { OrderContext } from "../../context/OrderContext";
 import styles from "./Confirmation.module.scss";
 
 function Confirmation() {
+  const navigate = useNavigate();
   const { orderInformation, creditCardInformation } = useContext(OrderContext);
   const cart = JSON.parse(localStorage.getItem("cart"));
 
@@ -65,7 +67,7 @@ function Confirmation() {
         </div>
         <div className={styles.buttons}>
           <button>Commander</button>
-          <button>Annuler</button>
+          <button onClick={() => navigate("/")}>Annuler</button>
         </div>
       </div>
     </div>
