@@ -1,9 +1,9 @@
 import { useState } from "react";
-import Confirmation from "../../components/Confirmation/Confirmation";
 import CreditCard from "../../components/CreditCard/CreditCard";
 import OrderForm from "../../components/OrderForm/OrderForm";
 import OrderProvider from "../../components/OrderProvider";
 import StepsIndex from "../../components/StepsIndex/StepsIndex";
+import Summary from "../../components/Summary/Summary";
 import styles from "./Payment.module.scss";
 
 function Payement() {
@@ -11,7 +11,7 @@ function Payement() {
   const compoenentList = [
     <OrderForm step={step} setStep={setStep} />,
     <CreditCard step={step} setStep={setStep} />,
-    <Confirmation step={step} setStep={setStep} />,
+    <Summary step={step} setStep={setStep} />,
   ];
 
   return (

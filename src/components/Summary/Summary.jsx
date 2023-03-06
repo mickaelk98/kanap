@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { OrderContext } from "../../context/OrderContext";
-import styles from "./Confirmation.module.scss";
+import styles from "./Summary.module.scss";
 
-function Confirmation() {
+function Summary() {
   const navigate = useNavigate();
   const { orderInformation, creditCardInformation } = useContext(OrderContext);
   const cart = JSON.parse(localStorage.getItem("cart"));
@@ -74,4 +74,4 @@ function Confirmation() {
   );
 }
 
-export default Confirmation;
+export default Summary;
