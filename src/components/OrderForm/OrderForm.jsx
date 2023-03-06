@@ -49,11 +49,11 @@ function OrderForm({ step, setStep }) {
 
   return (
     <div className={styles.formpage}>
-      <h2>Information de livraison</h2>
       <form
         className={styles.form}
         onSubmit={handleSubmit(getOrderInformation)}
       >
+        <h2>Information de livraison</h2>
         <div>
           <label htmlFor="name">Nom</label>
           <input

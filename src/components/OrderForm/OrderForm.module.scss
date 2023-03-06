@@ -1,3 +1,5 @@
+@use '../../assets/styles/media';
+
 .formpage {
   background: var(--primary-color);
   color: #fff;
@@ -8,11 +10,17 @@
     text-transform: capitalize;
     font-weight: bold;
     margin: 20px 0;
+    @include media.sm-lt {
+      margin: 0;
+    }
   }
   .form {
     width: 90%;
     max-width: 600px;
     margin: 0 auto;
+    @include media.lg-lt {
+      margin-right: 0;
+    }
     div {
       display: flex;
       flex-direction: column;
