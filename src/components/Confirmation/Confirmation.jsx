@@ -3,7 +3,9 @@ import { OrderContext } from "../../context/OrderContext";
 import styles from "./Confirmation.module.scss";
 
 function Confirmation() {
-  const { orderInformation } = useContext(OrderContext);
+  const { orderInformation, creditCardInformation } = useContext(OrderContext);
+
+  console.log(orderInformation, creditCardInformation);
 
   return (
     <div className={styles.confirmationpage}>

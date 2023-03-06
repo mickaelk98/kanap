@@ -1,16 +1,14 @@
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import {
-  number,
-  expirationMonth,
-  expirationYear,
-  cvv,
-  expirationDate,
-} from "card-validator";
+import { number, cvv, expirationDate } from "card-validator";
 import styles from "./CreditCard.module.scss";
+import { useContext } from "react";
+import { OrderContext } from "../../context/OrderContext";
 
 function CreditCard() {
+  const { addCreditCardInformation } = useContext(OrderContext);
+
   const schema = yup.object({
     cardHolderName: yup
       .string()
@@ -42,12 +40,14 @@ function CreditCard() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema),
   });
 
   function getCardInformation(formValue) {
-    console.log(formValue);
+    addCreditCardInformation(formValue);
+    reset();
   }
 
   return (
@@ -69,7 +69,7 @@ function CreditCard() {
           <label htmlFor="number">Numero de la carte</label>
           <input
             {...register("cardNumber")}
-            type="number"
+            type="text"
             placeholder="1234 5678 9123 0000"
           />
           {errors?.cardNumber && <small> {errors.cardNumber.message} </small>}
