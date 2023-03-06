@@ -11,7 +11,7 @@ function Footer() {
             </li>
             <li>Adresse: 10 quai de la charente 75019 Paris 19</li>
             <li>Téléphone : 01 23 45 67 89</li>
-            <li>Email : support@name.com</li>
+            <li>Email : kanap@gmail.com</li>
           </ul>
         </div>
       </div>
