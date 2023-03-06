@@ -15,6 +15,14 @@ function Summary() {
     cardDate: { month, year },
   } = creditCardInformation;
 
+  if ((orderInformation, creditCardInformation)) {
+    localStorage.setItem("orderInformation", JSON.stringify(orderInformation));
+    localStorage.setItem(
+      "creditCardInformation",
+      JSON.stringify(creditCardInformation)
+    );
+  }
+
   const totalPrice = cart.reduce(
     (acc, value) => (acc += value.price * value.quantity),
     0
@@ -66,7 +74,7 @@ function Summary() {
           </p>
         </div>
         <div className={styles.buttons}>
-          <button>Commander</button>
+          <button onClick={() => navigate("/confirmation")}>Commander</button>
           <button onClick={() => navigate("/")}>Annuler</button>
         </div>
       </div>
