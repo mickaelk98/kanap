@@ -23,9 +23,8 @@ const Product: React.FC = () => {
   }
 
   function addToCart() {
-    let cart: CartItemInterface[] = JSON.parse(
-      localStorage.getItem("cart") || ""
-    );
+    const localCart = localStorage.getItem("cart");
+    let cart = localCart !== null ? JSON.parse(localCart) : null;
 
     const article: CartItemInterface = {
       _id,
