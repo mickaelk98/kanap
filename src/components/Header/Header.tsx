@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import logo from "@/assets/images/logo.png";
 
-function Header() {
+const Header = () => {
   return (
     <header className="header">
       <div className="header__info">
@@ -47,6 +47,6 @@ function Header() {
       </div>
     </header>
   );
-}
+};
 
 export default Header;

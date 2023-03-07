@@ -1,6 +1,7 @@
+import React from "react";
 import styles from "./Confirmation.module.scss";
 
-function Confirmation() {
+const Confirmation: React.FC = () => {
   localStorage.clear();
   return (
     <div className={styles.confirmation}>
@@ -8,6 +9,6 @@ function Confirmation() {
       <div>{crypto.randomUUID()}</div>
     </div>
   );
-}
+};
 
 export default Confirmation;

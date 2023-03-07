@@ -1,3 +1,5 @@
+import { ProductInterface } from '../interfaces/ProductInterface'
+
 import productImage1 from "@/assets/images/kanap01.jpeg";
 import productImage2 from "@/assets/images/kanap02.jpeg";
 import productImage3 from "@/assets/images/kanap03.jpeg";
@@ -7,7 +9,7 @@ import productImage6 from "@/assets/images/kanap06.jpeg";
 import productImage7 from "@/assets/images/kanap07.jpeg";
 import productImage8 from "@/assets/images/kanap08.jpeg";
 
-export const products = [
+export const products: ProductInterface[] = [
   {
     colors: ["Blue", "White", "Black"],
     _id: "107fb5b75607497b96722bda5b504926",

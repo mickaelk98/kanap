@@ -1,4 +1,4 @@
-import { lazy, Suspense } from "react";
+import React, { lazy, Suspense } from "react";
 import { Outlet } from "react-router-dom";
 const Header = lazy(() => import("./components/Header/Header"));
 const Footer = lazy(() => import("./components/Footer/Footer"));
@@ -7,8 +7,8 @@ import bannerLogo from "./assets/images/banniere.png";
 import { products } from "./data/products";
 import Loading from "./pages/Loading";
 
-function App() {
-  function getOneProduct(productId) {
+const App: React.FC = () => {
+  function getOneProduct(productId: string) {
     const productArr = products.filter((product) => product._id === productId);
     return productArr[0];
   }
@@ -34,6 +34,6 @@ function App() {
       </ProductsContext.Provider>
     </div>
   );
-}
+};
 
 export default App;

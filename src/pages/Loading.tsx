@@ -1,4 +1,6 @@
-function Loading() {
+import React from "react";
+
+const Loading: React.FC = () => {
   return (
     <div className="loader">
       <div className="square"></div>
@@ -12,6 +14,6 @@ function Loading() {
       <div className="square last"></div>
     </div>
   );
-}
+};
 
 export default Loading;

@@ -1,6 +1,7 @@
+import React from "react";
 import ProductsList from "../components/ProductsList/ProductList";
 
-function Homepage() {
+const Homepage: React.FC = () => {
   return (
     <>
       <main>
@@ -8,6 +9,6 @@ function Homepage() {
       </main>
     </>
   );
-}
+};
 
 export default Homepage;

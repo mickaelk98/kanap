@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import CreditCard from "../../components/CreditCard/CreditCard";
 import OrderForm from "../../components/OrderForm/OrderForm";
 import OrderProvider from "../../components/OrderProvider";
@@ -6,12 +6,12 @@ import StepsIndex from "../../components/StepsIndex/StepsIndex";
 import Summary from "../../components/Summary/Summary";
 import styles from "./Payment.module.scss";
 
-function Payement() {
+const Payement: React.FC = () => {
   const [step, setStep] = useState(0);
   const compoenentList = [
     <OrderForm step={step} setStep={setStep} />,
     <CreditCard step={step} setStep={setStep} />,
-    <Summary step={step} setStep={setStep} />,
+    <Summary />,
   ];
 
   return (
@@ -24,6 +24,6 @@ function Payement() {
       </div>
     </OrderProvider>
   );
-}
+};
 
 export default Payement;

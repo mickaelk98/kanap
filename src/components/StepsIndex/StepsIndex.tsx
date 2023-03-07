@@ -1,6 +1,7 @@
+import React from "react";
 import styles from "./StepsIndex.module.scss";
 
-function StepsIndex({ step }) {
+const StepsIndex: React.FC<{ step: number }> = ({ step }) => {
   return (
     <ul className={styles.stepsindex}>
       <li>
@@ -38,6 +39,6 @@ function StepsIndex({ step }) {
       </li>
     </ul>
   );
-}
+};
 
 export default StepsIndex;

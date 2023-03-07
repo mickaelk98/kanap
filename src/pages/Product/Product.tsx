@@ -1,37 +1,41 @@
-import { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ProductsContext } from "@/context/ProductsContext";
+import { ProductsContext } from "../../context/ProductsContext";
+import { CartItemInterface } from "../../interfaces/CartItemInterfac";
 import styles from "./Product.module.scss";
 
-function Product() {
+const Product: React.FC = () => {
   const { getOneProduct } = useContext(ProductsContext);
-  const params = useParams();
-  const id = params.id;
-  const product = getOneProduct(id);
-  const { imageUrl, altTxt, name, description, price, colors } = product;
-  const productColor = useRef("");
-  const [productQuantity, setProductQuantity] = useState(1);
+  const { id } = useParams<{ id: string }>();
+  const product = getOneProduct(id as string);
+  const { _id, imageUrl, altTxt, name, description, price, colors } = product;
+  const productColor = useRef<string>("");
+  const [productQuantity, setProductQuantity] = useState<number>(1);
 
   // get product color
-  function handleChangeColor(e) {
+  function handleChangeColor(e: React.ChangeEvent<HTMLSelectElement>) {
     productColor.current = e.target.value;
   }
 
   // get product quantity
-  function handleChangeQuantity(e) {
-    setProductQuantity(e.target.value);
+  function handleChangeQuantity(e: React.ChangeEvent<HTMLInputElement>) {
+    setProductQuantity(Number(e.target.value));
   }
 
   function addToCart() {
-    let cart = JSON.parse(localStorage.getItem("cart"));
-    const article = {
-      _id: id,
+    let cart: CartItemInterface[] = JSON.parse(
+      localStorage.getItem("cart") || ""
+    );
+
+    const article: CartItemInterface = {
+      _id,
       color: productColor.current,
-      quantity: Math.floor(productQuantity),
+      quantity: productQuantity,
       name,
       price,
       imageUrl,
       altTxt,
+      description,
     };
     let articleAlreadyInCart = false;
 
@@ -45,14 +49,14 @@ function Product() {
           articleAlreadyInCart = true;
           cart[i].quantity += article.quantity;
           localStorage.setItem("cart", JSON.stringify(cart));
-          cart = JSON.parse(localStorage.getItem("cart"));
+          cart = JSON.parse(localStorage.getItem("cart") || "");
         }
       }
       // ajout le produit dans le pannier si il n'y est pas
       if (!articleAlreadyInCart) {
         cart.push(article);
         localStorage.setItem("cart", JSON.stringify(cart));
-        cart = JSON.parse(localStorage.getItem("cart"));
+        cart = JSON.parse(localStorage.getItem("cart") || "");
       }
     }
   }
@@ -79,9 +83,9 @@ function Product() {
             id="colors"
           >
             <option value="">Choissisez une couleur</option>
-            {colors.map((color) => (
-              <option key={color} value={color}>
-                {color}
+            {colors.map((c) => (
+              <option key={c} value={c}>
+                {c}
               </option>
             ))}
           </select>
@@ -102,6 +106,6 @@ function Product() {
       </article>
     </main>
   );
-}
+};
 
 export default Product;

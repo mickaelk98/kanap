@@ -1,12 +1,15 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { OrderContext } from "../../context/OrderContext";
+import { CartItemInterface } from "../../interfaces/CartItemInterfac";
 import styles from "./Summary.module.scss";
 
-function Summary() {
+const Summary: React.FC = () => {
   const navigate = useNavigate();
   const { orderInformation, creditCardInformation } = useContext(OrderContext);
-  const cart = JSON.parse(localStorage.getItem("cart"));
+  const cart: CartItemInterface[] = JSON.parse(
+    localStorage.getItem("cart") || ""
+  );
 
   const { name, location } = orderInformation;
   const {
@@ -15,7 +18,7 @@ function Summary() {
     cardDate: { month, year },
   } = creditCardInformation;
 
-  if ((orderInformation, creditCardInformation)) {
+  if (orderInformation && creditCardInformation) {
     localStorage.setItem("orderInformation", JSON.stringify(orderInformation));
     localStorage.setItem(
       "creditCardInformation",
@@ -59,7 +62,7 @@ function Summary() {
           <ul>
             {cart.map((cartItem) => (
               <li key={cartItem._id}>
-                <img src={cartItem.imageUrl} alt={cartItem.atTxt} />
+                <img src={cartItem.imageUrl} alt={cartItem.altTxt} />
                 <div>
                   <p>{cartItem.name}</p>
                   <p>{cartItem.color}</p>
@@ -80,6 +83,6 @@ function Summary() {
       </div>
     </div>
   );
-}
+};
 
 export default Summary;

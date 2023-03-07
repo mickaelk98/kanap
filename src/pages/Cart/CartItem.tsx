@@ -1,6 +1,13 @@
+import React from "react";
+import { CartItemInterface } from "../../interfaces/CartItemInterfac";
 import styles from "./CartItem.module.scss";
 
-function CartItem({ article, deleteArticle }) {
+interface Props {
+  article: CartItemInterface;
+  deleteArticle: (article: CartItemInterface) => void;
+}
+
+const CartItem: React.FC<Props> = ({ article, deleteArticle }) => {
   function handleClick() {
     deleteArticle(article);
   }
@@ -19,6 +26,6 @@ function CartItem({ article, deleteArticle }) {
       </div>
     </li>
   );
-}
+};
 
 export default CartItem;

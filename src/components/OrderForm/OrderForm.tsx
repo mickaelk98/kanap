@@ -1,11 +1,17 @@
 import * as yup from "yup";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import styles from "./OrderForm.module.scss";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { OrderContext } from "../../context/OrderContext";
+import { OrderInformationInterface } from "../../interfaces/OrderInformationInterface";
 
-function OrderForm({ step, setStep }) {
+interface Props {
+  step: number;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const OrderForm: React.FC<Props> = ({ step, setStep }) => {
   const { addOrderInformation } = useContext(OrderContext);
 
   const schema = yup.object({
@@ -21,7 +27,7 @@ function OrderForm({ step, setStep }) {
       .string()
       .required("Ce champ est obligatoire")
       .matches(
-        "([0-9]*) ?([a-zA-Z,. ]*) ?([0-9]{5}) ?([a-zA-Z]*)",
+        /([0-9]*) ?([a-zA-Z,. ]*) ?([0-9]{5}) ?([a-zA-Z]*)/,
         "Votre addresse est incorrect (ex: 4 rue victore 75000 paris)"
       ),
   });
@@ -41,7 +47,7 @@ function OrderForm({ step, setStep }) {
     mode: "onSubmit",
   });
 
-  function getOrderInformation(formValue) {
+  function getOrderInformation(formValue: OrderInformationInterface) {
     addOrderInformation(formValue);
     reset();
     setStep(step + 1);
@@ -91,6 +97,6 @@ function OrderForm({ step, setStep }) {
       </form>
     </div>
   );
-}
+};
 
 export default OrderForm;

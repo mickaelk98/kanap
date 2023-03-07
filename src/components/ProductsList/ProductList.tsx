@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { ProductsContext } from "../../context/ProductsContext";
 import ProductItem from "../ProductItem/ProductItem";
 
-function ProductsList() {
+const ProductsList: React.FC = () => {
   const { products } = useContext(ProductsContext);
   return (
     <div className="products-list">
@@ -18,6 +18,6 @@ function ProductsList() {
       </div>
     </div>
   );
-}
+};
 
 export default ProductsList;

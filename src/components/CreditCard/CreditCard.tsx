@@ -3,10 +3,17 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { number, cvv, expirationDate } from "card-validator";
 import styles from "./CreditCard.module.scss";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { OrderContext } from "../../context/OrderContext";
+import { CreditCardInformationInterface } from "../../interfaces/CreditCardInformationInterface";
+import { cardNumber } from "card-validator/dist/card-number";
 
-function CreditCard({ step, setStep }) {
+interface Props {
+  step: number;
+  setStep: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const CreditCard: React.FC<Props> = ({ step, setStep }) => {
   const { addCreditCardInformation } = useContext(OrderContext);
 
   const schema = yup.object({
@@ -43,17 +50,29 @@ function CreditCard({ step, setStep }) {
     reset,
   } = useForm({
     resolver: yupResolver(schema),
+    defaultValues: {
+      cardHolderName: "",
+      cardNumber: "",
+      cardDate: { month: "", year: "" },
+      cardCvv: "",
+    },
   });
 
-  function getCardInformation(formValue) {
+  // function getCardInformation(formValue: CreditCardInformationInterface) {
+  //   addCreditCardInformation(formValue);
+  //   reset();
+  //   setStep(step + 1);
+  // }
+
+  const getCardInformation = handleSubmit((formValue) => {
     addCreditCardInformation(formValue);
     reset();
     setStep(step + 1);
-  }
+  });
 
   return (
     <div className={styles.creditcardpage}>
-      <form className={styles.form} onSubmit={handleSubmit(getCardInformation)}>
+      <form className={styles.form} onSubmit={getCardInformation}>
         <h2>carte de paiement</h2>
         <div className={styles.name}>
           <label htmlFor="name">Nom</label>
@@ -110,6 +129,6 @@ function CreditCard({ step, setStep }) {
       </form>
     </div>
   );
-}
+};
 
 export default CreditCard;
