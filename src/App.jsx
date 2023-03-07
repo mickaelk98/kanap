@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 const Header = lazy(() => import("./components/Header/Header"));
 const Footer = lazy(() => import("./components/Footer/Footer"));
 import { ProductsContext } from "./context/ProductsContext";
-import bannerLogo from "/images/banniere.png";
+import bannerLogo from "./assets/images/banniere.png";
 import { products } from "./data/products";
 import Loading from "./pages/Loading";
 
