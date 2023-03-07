@@ -6,7 +6,8 @@ import CartItem from "./CartItem";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const localCart = JSON.parse(localStorage.getItem("cart") || "");
+  const storageCart = localStorage.getItem("cart");
+  let localCart = storageCart !== null ? JSON.parse(storageCart) : null;
   const [cart, setCart] = useState<CartItemInterface[]>(localCart);
   let totalPrice;
   let totalArticle;
